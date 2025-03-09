@@ -436,28 +436,6 @@
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
         </Style>
-        <Flyout x:Key="myColorPickerFlyout">
-            <RelativePanel>
-                <ColorPicker x:Name="myColorPicker"
-                         IsColorChannelTextInputVisible="True"
-                         IsHexInputVisible="True"/>
-
-                <Grid RelativePanel.Below="myColorPicker"
-                  RelativePanel.AlignLeftWithPanel="True"
-                  RelativePanel.AlignRightWithPanel="True">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Button x:Uid="Confirm" Click="ConfirmColor_Click"
-                            Style="{StaticResource AccentButtonStyle}"
-                        Margin="0,12,2,0" HorizontalAlignment="Stretch"/>
-                    <Button x:Uid="Cancel" Click="CancelColor_Click"
-                        Margin="2,12,0,0" HorizontalAlignment="Stretch"
-                        Grid.Column="1"/>
-                </Grid>
-            </RelativePanel>
-        </Flyout>
     </Page.Resources>
     <Grid>
         <RelativePanel Background="{StaticResource TabViewItemHeaderBackground}">

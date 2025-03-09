@@ -668,11 +668,6 @@ namespace UTE_UWP_.Views
             await DisplayAboutDialog();
         }
 
-        private void FindButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void editor_TextChanged(object sender, RoutedEventArgs e)
         {
 
@@ -719,17 +714,6 @@ namespace UTE_UWP_.Views
             else await ShowUnsavedDialog();
         }
 
-        private void ConfirmColor_Click(object sender, RoutedEventArgs e)
-        {
-            // Confirm color picker choice and apply color to text
-            Windows.UI.Color color = myColorPicker.Color;
-            editor.Document.Selection.CharacterFormat.ForegroundColor = color;
-        }
-
-        private void CancelColor_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -771,14 +755,6 @@ namespace UTE_UWP_.Views
             }
         }
 
-        private void ReplaceSelected_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void ReplaceAll_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void FontSizeBox_ValueChanged(Microsoft.UI.Xaml.Controls.NumberBox sender, Microsoft.UI.Xaml.Controls.NumberBoxValueChangedEventArgs args)
         {
             if (editor != null && editor.Document.Selection != null)
@@ -787,8 +763,6 @@ namespace UTE_UWP_.Views
                 selectedText.CharacterFormat.Size = (float)sender.Value;
             }
         }
-
-
 
         public async void uteverclick(object sender, RoutedEventArgs e)
         {
