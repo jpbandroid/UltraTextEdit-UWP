@@ -19,7 +19,7 @@
             IsHitTestVisible="True"
             VerticalAlignment="Top"
             Background="Transparent"
-            Height="40"
+            Height="30"
             Canvas.ZIndex="1" 
             Margin="50,2,0,0"
             RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
@@ -32,7 +32,7 @@
                    Height="16"
                    Margin="0,2,0,0" />
                 <TextBlock x:Name="AppTitle"
-                       Text="Settings"
+                           x:Uid="Settings_Title"
                        VerticalAlignment="Center"
                        Margin="12,2,0,0"
                        Style="{StaticResource CaptionTextBlockStyle}" />
