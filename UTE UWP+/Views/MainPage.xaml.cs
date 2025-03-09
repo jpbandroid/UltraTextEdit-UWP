@@ -368,6 +368,7 @@ namespace UTE_UWP_.Views
                 ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
                 charFormatting.Bold = FormatEffect.Toggle;
                 selectedText.CharacterFormat = charFormatting;
+                BB.IsChecked = editor.Document.Selection.CharacterFormat.Bold == FormatEffect.On;
             }
         }
 
@@ -495,6 +496,7 @@ namespace UTE_UWP_.Views
                 ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
                 charFormatting.Italic = FormatEffect.Toggle;
                 selectedText.CharacterFormat = charFormatting;
+                IB.IsChecked = editor.Document.Selection.CharacterFormat.Italic == FormatEffect.On;
             }
         }
 
