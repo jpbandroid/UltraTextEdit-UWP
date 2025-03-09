@@ -362,19 +362,12 @@ namespace UTE_UWP_.Views
 
         private void BoldButton_Click(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Text.ITextSelection selectedText = editor.Document.Selection;
-            Windows.UI.Text.ITextSelection selectedText2 = comments.Document.Selection;
+            ITextSelection selectedText = editor.Document.Selection;
             if (selectedText != null)
             {
-                Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
-                charFormatting.Bold = Windows.UI.Text.FormatEffect.Toggle;
+                ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                charFormatting.Bold = FormatEffect.Toggle;
                 selectedText.CharacterFormat = charFormatting;
-            }
-            if (selectedText2 != null)
-            {
-                Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText2.CharacterFormat;
-                charFormatting.Bold = Windows.UI.Text.FormatEffect.Toggle;
-                selectedText2.CharacterFormat = charFormatting;
             }
         }
 
@@ -494,23 +487,14 @@ namespace UTE_UWP_.Views
             }
         }
 
-
-
         private void ItalicButton_Click(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Text.ITextSelection selectedText = editor.Document.Selection;
-            Windows.UI.Text.ITextSelection selectedText2 = comments.Document.Selection;
+            ITextSelection selectedText = editor.Document.Selection;
             if (selectedText != null)
             {
-                Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
-                charFormatting.Italic = Windows.UI.Text.FormatEffect.Toggle;
+                ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                charFormatting.Italic = FormatEffect.Toggle;
                 selectedText.CharacterFormat = charFormatting;
-            }
-            if (selectedText2 != null)
-            {
-                Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText2.CharacterFormat;
-                charFormatting.Italic = Windows.UI.Text.FormatEffect.Toggle;
-                selectedText2.CharacterFormat = charFormatting;
             }
         }
 
@@ -1812,6 +1796,47 @@ namespace UTE_UWP_.Views
             var template = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Templates/SongLyricsTemplate.rtf"));
             var stream = await template.OpenAsync(FileAccessMode.Read);
             editor.Document.LoadFromStream(TextSetOptions.FormatRtf, stream);
+        }
+
+        private void OnKeyboardAcceleratorInvoked(Windows.UI.Xaml.Input.KeyboardAccelerator sender, Windows.UI.Xaml.Input.KeyboardAcceleratorInvokedEventArgs args)
+        {
+            ITextSelection selectedText = editor.Document.Selection;
+            switch (sender.Key)
+            {
+                case Windows.System.VirtualKey.B:
+                    if (selectedText != null)
+                    {
+                        ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                        charFormatting.Bold = FormatEffect.Toggle;
+                        selectedText.CharacterFormat = charFormatting;
+                    }
+                    BB.IsChecked = editor.Document.Selection.CharacterFormat.Bold == FormatEffect.On;
+                    args.Handled = true;
+                    break;
+                case Windows.System.VirtualKey.I:
+                    if (selectedText != null)
+                    {
+                        ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                        charFormatting.Italic = FormatEffect.Toggle;
+                        selectedText.CharacterFormat = charFormatting;
+                    }
+                    IB.IsChecked = editor.Document.Selection.CharacterFormat.Italic == FormatEffect.On;
+                    args.Handled = true;
+                    break;
+                case Windows.System.VirtualKey.U:
+                    if (selectedText != null)
+                    {
+                        UnderlineType characterFormat = selectedText.CharacterFormat.Underline;
+                        characterFormat = UnderlineType.Single;
+                        selectedText.CharacterFormat.Underline = characterFormat;
+                    }
+                    args.Handled = true;
+                    break;
+                case Windows.System.VirtualKey.S:
+                    SaveFile(true);
+                    args.Handled = true;
+                    break;
+            }
         }
     }
 }
