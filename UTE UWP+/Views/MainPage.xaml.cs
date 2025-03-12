@@ -799,7 +799,7 @@ namespace UTE_UWP_.Views
             {
                 SelWordGrid.Visibility = Visibility.Visible;
                 editor.Document.Selection.GetText(TextGetOptions.None, out var seltext);
-                var selwordcount = seltext.Split(new char[] { ' ', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length;
+                var selwordcount = seltext.Split(new char[] { ' ', '\n', '\t', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
                 SelWordCount.Text = $"Selected words: {selwordcount}";
             }
             else
@@ -809,7 +809,8 @@ namespace UTE_UWP_.Views
             editor.Document.GetText(TextGetOptions.None, out var text);
             if (text.Length > 0 && text != " " && text != "" && text != null)
             {
-                var wordcount = text.Split(new char[] { ' ', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length;
+                var separatorList = new char[] { ' ', '\n', '\t', '\r' };
+                var wordcount = text.Split(separatorList, StringSplitOptions.RemoveEmptyEntries).Length;
                 WordCount.Text = $"Word count: {wordcount}";
             }
             else
