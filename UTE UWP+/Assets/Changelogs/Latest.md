@@ -1,3 +1,5 @@
+- Allow bold and italic toggles to toggle on invocation of their respective keyboard shortcuts
 - Fix text highlighting bug
+- UI fixes
 - Code cleanup
 - Update dependencies
