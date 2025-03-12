@@ -1374,7 +1374,7 @@ Padding="11"
 FontFamily="Segoe UI"
 IsSpellCheckEnabled="False"
 TextWrapping="Wrap"
-TextChanged="RichEditBox_TextChanged" SelectionChanged="editor_SelectionChanged" x:FieldModifier="public" BorderThickness="0" Margin="0,0,0,35">
+TextChanged="RichEditBox_TextChanged" SelectionChanged="editor_SelectionChanged" x:FieldModifier="public" BorderThickness="0" Margin="0,0,0,35" Height="Auto" Width="595">
                                     <RichEditBox.KeyboardAccelerators>
                                         <KeyboardAccelerator
         Key="B"
