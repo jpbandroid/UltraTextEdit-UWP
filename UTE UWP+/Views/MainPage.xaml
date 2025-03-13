@@ -675,8 +675,9 @@ RelativePanel.AlignRightWithPanel="True">
                                         <ToggleButton x:Name="EditButton" x:Uid="Home"  Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="Button_Click_33" Style="{StaticResource ToolbarToggleButton}" Padding="11,6,11,4"/>
                                         <ToggleButton x:Name="InsertButton" x:Uid="Insert"  Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="Button_Click_34" Style="{StaticResource ToolbarToggleButton}"  Padding="11,6,11,4"/>
                                         <ToggleButton x:Name="CommentsButton" x:Uid="Comments" Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="Button_Click_37" Style="{StaticResource ToolbarContextualToggleButton}" Padding="11,6,11,4"/>
-
+                                        <ToggleButton x:Name="LayoutButton" x:Uid="Layout" Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="OpenLayoutTab" Style="{StaticResource ToolbarToggleButton}" Padding="11,6,11,4"/>
                                         <ToggleButton x:Name="DeveloperButton" x:Uid="Developer" Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="Button_Click_36" Style="{StaticResource ToolbarToggleButton}" Padding="11,6,11,4"/>
+                                        <ToggleButton x:Name="ViewButton" x:Uid="View" Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="OpenViewTab" Style="{StaticResource ToolbarToggleButton}" Padding="11,6,11,4"/>
                                         <ToggleButton x:Name="HelpButton" x:Uid="Help" Background="#00000000" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" Height="32" Click="Button_Click_35" Style="{StaticResource ToolbarToggleButton}" Padding="11,6,11,4"/>
                                     </StackPanel>
                                     <Border x:Name="RibbonBorder" RelativePanel.Below="RibbonTabs" VerticalAlignment="Top" BorderBrush="{StaticResource CardStrokeColorDefaultBrush}" BorderThickness="0,1,0,1" HorizontalAlignment="Stretch" Background="{StaticResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
@@ -1261,6 +1262,48 @@ RelativePanel.AlignRightWithPanel="True">
                                                             <Grid Width="60" Height="45" Margin="4,1,4,-1">
                                                                 <TextBlock TextWrapping="Wrap" Text="&#xE897;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
                                                                 <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Margin="0,20,0,0" Width="60" TextWrapping="WrapWholeWords"><Run x:Uid="ChangelogText"/></TextBlock>
+                                                            </Grid>
+                                                        </Button>
+                                                    </StackPanel>
+                                                </controls:RibbonGroup>
+                                            </controls:Ribbon>
+                                            <controls:Ribbon x:Name="Layout">
+                                                <controls:RibbonGroup>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,27,0,0" Spacing="10">
+                                                        <Button x:Name="sizeA4"  FontFamily="{StaticResource SymbolThemeFontFamily}" Width="40" Height="53" FontSize="22" x:Uid="A4Tooltip" Padding="0,0,0,0" Margin="0,1,0,0" Background="Transparent" BorderBrush="#00000000" CornerRadius="4,4,4,4" Click="uteverclick">
+                                                            <Grid Width="30" Height="45" Margin="4,1,4,-1">
+                                                                <TextBlock TextWrapping="Wrap" Text="&#xE897;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
+                                                                <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Margin="0,20,0,0" Width="30"><Run x:Uid="A4Text"/></TextBlock>
+                                                            </Grid>
+                                                        </Button>
+                                                        <Button x:Name="sizeA3"  FontFamily="{StaticResource SymbolThemeFontFamily}" Width="65" Height="53" FontSize="22" x:Uid="A3Tooltip" Padding="0,0,0,0" Margin="0,1,0,0" Background="Transparent" BorderBrush="#00000000" CornerRadius="4,4,4,4" Click="FirstRunClick">
+                                                            <Grid Width="60" Height="45" Margin="4,1,4,-1">
+                                                                <TextBlock TextWrapping="Wrap" Text="&#xE897;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
+                                                                <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Margin="0,20,0,0" Width="60" TextWrapping="WrapWholeWords"><Run x:Uid="A3Text"/></TextBlock>
+                                                            </Grid>
+                                                        </Button>
+                                                        <Button x:Name="sizeLetter"  FontFamily="{StaticResource SymbolThemeFontFamily}" Width="65" Height="53" FontSize="22" x:Uid="LetterTooltip" Padding="0,0,0,0" Margin="0,1,0,0" Background="Transparent" BorderBrush="#00000000" CornerRadius="4,4,4,4" Click="ChangelogClick">
+                                                            <Grid Width="60" Height="45" Margin="4,1,4,-1">
+                                                                <TextBlock TextWrapping="Wrap" Text="&#xE897;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
+                                                                <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Margin="0,20,0,0" Width="60" TextWrapping="WrapWholeWords"><Run x:Uid="LetterText"/></TextBlock>
+                                                            </Grid>
+                                                        </Button>
+                                                    </StackPanel>
+                                                </controls:RibbonGroup>
+                                            </controls:Ribbon>
+                                            <controls:Ribbon x:Name="View">
+                                                <controls:RibbonGroup>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,27,0,0" Spacing="10">
+                                                        <Button x:Name="PrintView"  FontFamily="{StaticResource SymbolThemeFontFamily}" Width="40" Height="53" FontSize="22" x:Uid="PrintViewTooltip" Padding="0,0,0,0" Margin="0,1,0,0" Background="Transparent" BorderBrush="#00000000" CornerRadius="4,4,4,4" Click="uteverclick">
+                                                            <Grid Width="30" Height="45" Margin="4,1,4,-1">
+                                                                <TextBlock TextWrapping="Wrap" Text="&#xE897;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
+                                                                <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Margin="0,20,0,0" Width="30"><Run x:Uid="PrintViewText"/></TextBlock>
+                                                            </Grid>
+                                                        </Button>
+                                                        <Button x:Name="WebView"  FontFamily="{StaticResource SymbolThemeFontFamily}" Width="65" Height="53" FontSize="22" x:Uid="WebViewTooltip" Padding="0,0,0,0" Margin="0,1,0,0" Background="Transparent" BorderBrush="#00000000" CornerRadius="4,4,4,4" Click="FirstRunClick">
+                                                            <Grid Width="60" Height="45" Margin="4,1,4,-1">
+                                                                <TextBlock TextWrapping="Wrap" Text="&#xE897;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
+                                                                <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Margin="0,20,0,0" Width="60" TextWrapping="WrapWholeWords"><Run x:Uid="WebViewText"/></TextBlock>
                                                             </Grid>
                                                         </Button>
                                                     </StackPanel>

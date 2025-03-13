@@ -579,4 +579,25 @@ title</value>
   <data name="Table.Text" xml:space="preserve">
     <value>Table</value>
   </data>
+  <data name="A3Text.Text" xml:space="preserve">
+    <value>A3</value>
+  </data>
+  <data name="A4Text.Text" xml:space="preserve">
+    <value>A4</value>
+  </data>
+  <data name="Layout.Content" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="LetterText.Text" xml:space="preserve">
+    <value>Letter</value>
+  </data>
+  <data name="PrintViewText.Text" xml:space="preserve">
+    <value>Print view</value>
+  </data>
+  <data name="View.Content" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="WebViewText.Text" xml:space="preserve">
+    <value>Web view</value>
+  </data>
 </root>

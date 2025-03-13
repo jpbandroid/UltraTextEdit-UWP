@@ -110,6 +110,8 @@ namespace UTE_UWP_.Views
             Insert.Visibility = Visibility.Collapsed;
             Comments.Visibility = Visibility.Collapsed;
             Developer.Visibility = Visibility.Collapsed;
+            Layout.Visibility = Visibility.Collapsed;
+            View.Visibility = Visibility.Collapsed;
             Help.Visibility = Visibility.Collapsed;
 
             ShareSourceLoad();
@@ -1335,10 +1337,14 @@ namespace UTE_UWP_.Views
             Insert.Visibility = Visibility.Collapsed;
             Developer.Visibility = Visibility.Collapsed;
             Comments.Visibility = Visibility.Visible;
+            Layout.Visibility = Visibility.Collapsed;
+            View.Visibility = Visibility.Collapsed;
             Help.Visibility = Visibility.Collapsed;
             EditButton.IsChecked = false;
             InsertButton.IsChecked = false;
             DeveloperButton.IsChecked = false;
+            LayoutButton.IsChecked = false;
+            ViewButton.IsChecked = false;
             CommentsButton.IsChecked = true;
             HelpButton.IsChecked = false;
         }
@@ -1349,11 +1355,15 @@ namespace UTE_UWP_.Views
             Insert.Visibility = Visibility.Collapsed;
             Developer.Visibility = Visibility.Collapsed;
             Comments.Visibility = Visibility.Collapsed;
+            Layout.Visibility = Visibility.Collapsed;
+            View.Visibility = Visibility.Collapsed;
             Help.Visibility = Visibility.Collapsed;
             EditButton.IsChecked = true;
             InsertButton.IsChecked = false;
             CommentsButton.IsChecked = false;
             DeveloperButton.IsChecked = false;
+            LayoutButton.IsChecked = false;
+            ViewButton.IsChecked = false;
             HelpButton.IsChecked = false;
         }
 
@@ -1363,11 +1373,15 @@ namespace UTE_UWP_.Views
             Insert.Visibility = Visibility.Visible;
             Developer.Visibility = Visibility.Collapsed;
             Comments.Visibility = Visibility.Collapsed;
+            Layout.Visibility = Visibility.Collapsed;
+            View.Visibility = Visibility.Collapsed;
             Help.Visibility = Visibility.Collapsed;
             EditButton.IsChecked = false;
             InsertButton.IsChecked = true;
             DeveloperButton.IsChecked = false;
             CommentsButton.IsChecked = false;
+            LayoutButton.IsChecked = false;
+            ViewButton.IsChecked = false;
             HelpButton.IsChecked = false;
         }
 
@@ -1377,11 +1391,15 @@ namespace UTE_UWP_.Views
             Insert.Visibility = Visibility.Collapsed;
             Developer.Visibility = Visibility.Collapsed;
             Comments.Visibility = Visibility.Collapsed;
+            Layout.Visibility = Visibility.Collapsed;
+            View.Visibility = Visibility.Collapsed;
             Help.Visibility = Visibility.Visible;
             EditButton.IsChecked = false;
             InsertButton.IsChecked = false;
             DeveloperButton.IsChecked = false;
             CommentsButton.IsChecked = false;
+            LayoutButton.IsChecked = false;
+            ViewButton.IsChecked = false;
             HelpButton.IsChecked = true;
         }
 
@@ -1704,11 +1722,15 @@ namespace UTE_UWP_.Views
             Insert.Visibility = Visibility.Collapsed;
             Developer.Visibility = Visibility.Visible;
             Comments.Visibility = Visibility.Collapsed;
+            Layout.Visibility = Visibility.Collapsed;
+            View.Visibility = Visibility.Collapsed;
             Help.Visibility = Visibility.Collapsed;
             EditButton.IsChecked = false;
             InsertButton.IsChecked = false;
             DeveloperButton.IsChecked = true;
             CommentsButton.IsChecked = false;
+            LayoutButton.IsChecked = false;
+            ViewButton.IsChecked = false;
             HelpButton.IsChecked = false;
         }
 
@@ -1840,6 +1862,42 @@ namespace UTE_UWP_.Views
                     args.Handled = true;
                     break;
             }
+        }
+
+        private void OpenLayoutTab(object sender, RoutedEventArgs e)
+        {
+            Home.Visibility = Visibility.Collapsed;
+            Insert.Visibility = Visibility.Collapsed;
+            Developer.Visibility = Visibility.Collapsed;
+            Comments.Visibility = Visibility.Collapsed;
+            Layout.Visibility = Visibility.Visible;
+            View.Visibility = Visibility.Collapsed;
+            Help.Visibility = Visibility.Collapsed;
+            EditButton.IsChecked = false;
+            InsertButton.IsChecked = false;
+            CommentsButton.IsChecked = false;
+            DeveloperButton.IsChecked = false;
+            LayoutButton.IsChecked = true;
+            ViewButton.IsChecked = false;
+            HelpButton.IsChecked = false;
+        }
+
+        private void OpenViewTab(object sender, RoutedEventArgs e)
+        {
+            Home.Visibility = Visibility.Collapsed;
+            Insert.Visibility = Visibility.Collapsed;
+            Developer.Visibility = Visibility.Collapsed;
+            Comments.Visibility = Visibility.Collapsed;
+            Layout.Visibility = Visibility.Collapsed;
+            View.Visibility = Visibility.Visible;
+            Help.Visibility = Visibility.Collapsed;
+            EditButton.IsChecked = false;
+            InsertButton.IsChecked = false;
+            CommentsButton.IsChecked = false;
+            DeveloperButton.IsChecked = false;
+            LayoutButton.IsChecked = false;
+            ViewButton.IsChecked = true;
+            HelpButton.IsChecked = false;
         }
     }
 }
