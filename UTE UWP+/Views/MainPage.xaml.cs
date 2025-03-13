@@ -27,6 +27,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
 namespace UTE_UWP_.Views
 {
     public sealed partial class MainPage : Page, INotifyPropertyChanged
@@ -1898,6 +1899,37 @@ namespace UTE_UWP_.Views
             LayoutButton.IsChecked = false;
             ViewButton.IsChecked = true;
             HelpButton.IsChecked = false;
+        }
+
+        private void A4Page(object sender, RoutedEventArgs e)
+        {
+            editor.Width = 595;
+        }
+
+        private void A3Page(object sender, RoutedEventArgs e)
+        {
+            editor.Width = 842;
+        }
+
+        private void LetterPage(object sender, RoutedEventArgs e)
+        {
+            editor.Width = 612;
+        }
+
+        private void PrintPage(object sender, RoutedEventArgs e)
+        {
+            editor.Width = 595;
+            sizeA4.IsEnabled = true;
+            sizeA3.IsEnabled = true;
+            sizeLetter.IsEnabled = true;
+        }
+
+        private void FullWidthPage(object sender, RoutedEventArgs e)
+        {
+            editor.Width = EditorGrid.Width;
+            sizeA4.IsEnabled = false;
+            sizeA3.IsEnabled = false;
+            sizeLetter.IsEnabled = false;
         }
     }
 }
