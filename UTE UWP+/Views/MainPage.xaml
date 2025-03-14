@@ -699,32 +699,7 @@ RelativePanel.AlignRightWithPanel="True">
                                                                     </DataTemplate>
                                                                 </ComboBox.ItemTemplate>
                                                             </ComboBox>
-                                                            <muxc:NumberBox MinWidth="0" x:Name="FSize" Width="147" ValueChanged="NumberBox_ValueChanged" VerticalContentAlignment="Center" FontSize="14" x:Uid="FontSize" VerticalAlignment="Top" Margin="6,0,0,0" Height="33" PlaceholderText="Multiple"/>
-                                                            <muxc:DropDownButton Width="32" Height="20" HorizontalContentAlignment="Left" FontSize="10" FontFamily="{StaticResource SymbolThemeFontFamily}" VerticalAlignment="Center" Padding="0,0,9,0" CornerRadius="4,4,4,4" Margin="-38,0,0,0" Background="Transparent" BorderBrush="{x:Null}">
-                                                                <muxc:DropDownButton.Flyout>
-                                                                    <MenuFlyout>
-                                                                        <MenuFlyoutItem Text="8" />
-                                                                        <MenuFlyoutItem Text="9" />
-                                                                        <MenuFlyoutItem Text="10" />
-                                                                        <MenuFlyoutItem Text="10.5" />
-                                                                        <MenuFlyoutItem Text="11" />
-                                                                        <MenuFlyoutItem Text="12" />
-                                                                        <MenuFlyoutItem Text="14" />
-                                                                        <MenuFlyoutItem Text="16" />
-                                                                        <MenuFlyoutItem Text="18" />
-                                                                        <MenuFlyoutItem Text="20" />
-                                                                        <MenuFlyoutItem Text="22" />
-                                                                        <MenuFlyoutItem Text="24" />
-                                                                        <MenuFlyoutItem Text="26" />
-                                                                        <MenuFlyoutItem Text="28" />
-                                                                        <MenuFlyoutItem Text="36" />
-                                                                        <MenuFlyoutItem Text="48" />
-                                                                        <MenuFlyoutItem Text="72" />
-                                                                        <MenuFlyoutSeparator/>
-                                                                        <MenuFlyoutItem Text="Default" />
-                                                                    </MenuFlyout>
-                                                                </muxc:DropDownButton.Flyout>
-                                                            </muxc:DropDownButton>
+                                                            <ComboBox x:Name="FontSizeBox" Width="147" IsEditable="True" CornerRadius="4,4,4,4" ItemsSource="{x:Bind fontsizes}" SelectionChanged="FontSizeBox_SelectionChanged" Text="11"/>
                                                         </StackPanel>
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0" Spacing="3">
                                                             <ToggleButton  x:Name="BB" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="&#xE19B;" Width="30" Height="30" Click="BoldButton_Click" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="16" Padding="2,3,2,2" x:Uid="BoldButton" CornerRadius="4,4,4,4" Background="{x:Null}" BorderBrush="{x:Null}"/>

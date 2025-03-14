@@ -1,6 +1,5 @@
 ﻿using MicaForUWP.Media;
 using Microsoft.Graphics.Canvas.Text;
-using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -676,10 +675,10 @@ namespace UTE_UWP_.Views
 
             if (!saved) UnsavedTextBlock.Visibility = Visibility.Visible;
             else UnsavedTextBlock.Visibility = Visibility.Collapsed;
-            if (!(FSize == null))
+            if (!(FontSizeBox == null))
             {
-                if (ST.Length is > 0 or < 0) FSize.Value = double.NaN;
-                else FSize.Value = CF.Size;
+                if (ST.Length is > 0 or < 0) FontSizeBox.Text = double.NaN.ToString();
+                else FontSizeBox.Text = CF.Size.ToString();
             }
 
             if (ST.Length is 0)
@@ -733,23 +732,20 @@ namespace UTE_UWP_.Views
             }
         }
 
-        private async void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            /*SettingsDialog dlg = new(editor, FontsCombo, this);
-            await dlg.ShowAsync();*/
-
-            if (Window.Current.Content is Frame rootFrame)
-            {
-                rootFrame.Navigate(typeof(SettingsPageContainer));
-            }
-        }
-
-        private void FontSizeBox_ValueChanged(Microsoft.UI.Xaml.Controls.NumberBox sender, Microsoft.UI.Xaml.Controls.NumberBoxValueChangedEventArgs args)
+        private void FontSizeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (editor != null && editor.Document.Selection != null)
             {
                 ITextSelection selectedText = editor.Document.Selection;
-                selectedText.CharacterFormat.Size = (float)sender.Value;
+                selectedText.CharacterFormat.Size = float.Parse(FontSizeBox.SelectedValue.ToString());
+            }
+        }
+
+        private async void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Window.Current.Content is Frame rootFrame)
+            {
+                rootFrame.Navigate(typeof(SettingsPageContainer));
             }
         }
 
@@ -1166,6 +1162,8 @@ namespace UTE_UWP_.Views
             }
         }
 
+        public List<string> fontsizes = new List<string> {"8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "26", "28", "36", "48", "72"};
+
         private async void more_symbols(object sender, RoutedEventArgs e)
         {
             // Create a ContentDialog
@@ -1273,28 +1271,6 @@ namespace UTE_UWP_.Views
                 if (CF != ParagraphAlignment.Justify) CF = ParagraphAlignment.Justify;
                 else CF = ParagraphAlignment.Left;
                 ST.ParagraphFormat.Alignment = CF;
-            }
-        }
-
-        private void NumberBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
-        {
-            if (!(editor == null))
-            {
-                var ST = editor.Document.Selection;
-                if (!(ST == null))
-                {
-                    _ = ST.CharacterFormat.Size;
-                    if (FSize != null && FSize.Value != double.NaN && FSize.Value != 0)
-                    {
-                        try
-                        {
-                            var CF = (float)FSize.Value;
-                            ST.CharacterFormat.Size = CF;
-                        }
-                        catch { }
-                    }
-                    else return;
-                }
             }
         }
 
@@ -1421,7 +1397,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = (float)V;
-                FSize.Text = V.ToString();
+                FontSizeBox.Text = V.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1443,7 +1419,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 28;
-                FSize.Text = V1.ToString();
+                FontSizeBox.Text = V1.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1466,7 +1442,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 22;
-                FSize.Text = 22.ToString();
+                FontSizeBox.Text = 22.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1487,7 +1463,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 16;
-                FSize.Text = 16.ToString();
+                FontSizeBox.Text = 16.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1508,7 +1484,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 14;
-                FSize.Text = 14.ToString();
+                FontSizeBox.Text = 14.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1529,7 +1505,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 18;
-                FSize.Text = 18.ToString();
+                FontSizeBox.Text = 18.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1550,7 +1526,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 20;
-                FSize.Text = 20.ToString();
+                FontSizeBox.Text = 20.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1571,7 +1547,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 18;
-                FSize.Text = 18.ToString();
+                FontSizeBox.Text = 18.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1592,7 +1568,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 16;
-                FSize.Text = 16.ToString();
+                FontSizeBox.Text = 16.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1613,7 +1589,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 14;
-                FSize.Text = 14.ToString();
+                FontSizeBox.Text = 14.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1634,7 +1610,7 @@ namespace UTE_UWP_.Views
 
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 14;
-                FSize.Text = 14.ToString();
+                FontSizeBox.Text = 14.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
@@ -1655,7 +1631,7 @@ namespace UTE_UWP_.Views
                 CF.Outline = FormatEffect.Off;
                 CF.Size = 18;
                 CF.ForegroundColor = Colors.DimGray;
-                FSize.Text = 18.ToString();
+                FontSizeBox.Text = 18.ToString();
                 CF.Underline = UnderlineType.None;
                 ST.CharacterFormat = CF;
             }
