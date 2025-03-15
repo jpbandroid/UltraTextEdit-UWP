@@ -173,6 +173,11 @@ namespace UTE_UWP_.Views
             {
                 LocalSettings.Values["DialogsInRibbonVID"] = "Off";
             }
+            if (LocalSettings.Values["OdtTextVID"] != null) { }
+            else
+            {
+                LocalSettings.Values["OdtTextVID"] = "Off";
+            }
         }
 
         private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
@@ -510,10 +515,13 @@ namespace UTE_UWP_.Views
             {
                 SuggestedStartLocation = PickerLocationId.DocumentsLibrary
             };
+            ApplicationDataContainer LocalSettings = ApplicationData.Current.LocalSettings;
 
             open.FileTypeFilter.Add(".rtf");
             open.FileTypeFilter.Add(".txt");
-            open.FileTypeFilter.Add(".odt");
+            if ((string)LocalSettings.Values["OdtTextVID"] == "On") {
+                open.FileTypeFilter.Add(".odt");
+            }
 
             StorageFile file = await open.PickSingleFileAsync();
             OdtHelper odtHelper = new OdtHelper();
@@ -533,7 +541,7 @@ namespace UTE_UWP_.Views
                         editor.Document.GetText(TextGetOptions.UseObjectText, out originalDocText);
                     }
                 }
-                else if (file.FileType == ".odt")
+                else if (file.FileType == ".odt" && (string)LocalSettings.Values["OdtTextVID"] == "On")
                 {
                     using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                     {

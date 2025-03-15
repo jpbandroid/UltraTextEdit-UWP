@@ -68,6 +68,10 @@
                 <controls:SettingsCard Header="Show the first run and changelog dialog links in the Ribbon">
                     <ToggleSwitch x:Name="dialogsonribbonvidToggle" OffContent="Off" OnContent="On" Toggled="dialogsonribbonvidToggle_Toggled"/>
                 </controls:SettingsCard>
+                <controls:SettingsCard Header="Enable opening ODT (OpenDocument Text) files (Experimental)">
+                    <ToggleSwitch x:Name="odtTextvidToggle" OffContent="Off" OnContent="On" Toggled="odtTextvidToggle_Toggled"/>
+                </controls:SettingsCard>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>
