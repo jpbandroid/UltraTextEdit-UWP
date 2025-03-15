@@ -11,9 +11,7 @@
         <StackPanel Padding="25">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Image Source="ms-appx:///Assets/utevericon.png" Width="64" Height="64"/>
-                <StackPanel>
-                    <TextBlock FontSize="36" Text="UltraTextEdit UWP" FontWeight="SemiBold" Foreground="{StaticResource SystemAccentColor}"/>
-                </StackPanel>
+                <TextBlock FontSize="36" Text="UltraTextEdit UWP" FontWeight="SemiBold" Foreground="{StaticResource SystemAccentColor}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
