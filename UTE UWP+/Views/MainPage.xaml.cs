@@ -1,8 +1,10 @@
-﻿using MicaForUWP.Media;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using MicaForUWP.Media;
 using Microsoft.Graphics.Canvas.Text;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WordPad.Helpers;
 
 namespace UTE_UWP_.Views
 {
@@ -84,6 +87,7 @@ namespace UTE_UWP_.Views
             ShareSourceLoad();
 
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            OdtHelper odtHelper = new OdtHelper();
 
             var appViewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
 
@@ -115,10 +119,7 @@ namespace UTE_UWP_.Views
             Help.Visibility = Visibility.Collapsed;
 
             ShareSourceLoad();
-
             InitializeVIDs();
-
-
         }
 
         private void InitializeVIDs()
@@ -512,29 +513,88 @@ namespace UTE_UWP_.Views
 
             open.FileTypeFilter.Add(".rtf");
             open.FileTypeFilter.Add(".txt");
+            open.FileTypeFilter.Add(".odt");
 
             StorageFile file = await open.PickSingleFileAsync();
+            OdtHelper odtHelper = new OdtHelper();
 
             if (file != null)
             {
-                using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                if (file.FileType == ".rtf")
                 {
-                    IBuffer buffer = await FileIO.ReadBufferAsync(file);
-                    var reader = DataReader.FromBuffer(buffer);
-                    reader.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
-                    string text = reader.ReadString(buffer.Length);
-                    // Load the file into the Document property of the RichEditBox.
-                    editor.Document.LoadFromStream(TextSetOptions.FormatRtf, randAccStream);
-                    editor.Document.GetText(TextGetOptions.UseObjectText, out originalDocText);
-                    //editor.Document.SetText(Windows.UI.Text.TextSetOptions.FormatRtf, text);
-                    //(MainPage.Current.Tabs.TabItems[MainPage.Current.Tabs.SelectedIndex] as TabViewItem).Header = file.Name;
+                    using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        IBuffer buffer = await FileIO.ReadBufferAsync(file);
+                        var reader = DataReader.FromBuffer(buffer);
+                        reader.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
+                        string text = reader.ReadString(buffer.Length);
+                        // Load the file into the Document property of the RichEditBox.
+                        editor.Document.LoadFromStream(TextSetOptions.FormatRtf, randAccStream);
+                        editor.Document.GetText(TextGetOptions.UseObjectText, out originalDocText);
+                    }
+                }
+                else if (file.FileType == ".odt")
+                {
+                    using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        // Read the file as a stream
+                        using (Stream stream = randAccStream.AsStreamForRead())
+                        {
+                            // Use ZipArchive to extract ODT contents
+                            using (var archive = new System.IO.Compression.ZipArchive(stream, System.IO.Compression.ZipArchiveMode.Read))
+                            {
+                                // Find the content.xml file inside the ODT archive
+                                var contentEntry = archive.GetEntry("content.xml");
+                                var stylesEntry = archive.GetEntry("styles.xml");
+                                if (contentEntry != null && stylesEntry != null)
+                                {
+                                    string contentXml, stylesXml;
+
+                                    // Read content.xml
+                                    using (var contentStream = contentEntry.Open())
+                                    using (var reader = new StreamReader(contentStream))
+                                        contentXml = await reader.ReadToEndAsync();
+
+                                    // Read styles.xml
+                                    using (var stylesStream = stylesEntry.Open())
+                                    using (var reader = new StreamReader(stylesStream))
+                                        stylesXml = await reader.ReadToEndAsync();
+
+                                    // Load the ODT content into the RichEditBox
+                                    await odtHelper.LoadOdtContentWithStyling(contentXml, stylesXml, archive, editor);
+                                }
+                                else
+                                {
+                                    // Handle case where content.xml is missing
+                                    await new Windows.UI.Popups.MessageDialog("Invalid ODT file: content.xml not found.").ShowAsync();
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (file.FileType == ".txt")
+                {
+                    using (IRandomAccessStream randAccStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        using (Stream stream = randAccStream.AsStreamForRead())
+                        {
+                            // Use StreamReader with the appropriate encoding (e.g., UTF-8)
+                            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+                            {
+                                string text = await reader.ReadToEndAsync();
+
+                                // Load the file into the Document property of the RichEditBox.
+                                editor.Document.SetText(TextSetOptions.None, text);
+                            }
+                        }
+                    }
                     AppTitle.Text = file.Name + " - " + "UTE UWP";
                     fileNameWithPath = file.Path;
+                    saved = true;
+                    _wasOpen = true;
+                    Windows.Storage.AccessCache.StorageApplicationPermissions.MostRecentlyUsedList.Add(file);
+                    Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("CurrentlyOpenFile", file);
                 }
-                saved = true;
-                _wasOpen = true;
-                Windows.Storage.AccessCache.StorageApplicationPermissions.MostRecentlyUsedList.Add(file);
-                Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("CurrentlyOpenFile", file);
             }
         }
 
