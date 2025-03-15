@@ -1,5 +1,6 @@
-- Allow bold and italic toggles to toggle on invocation of their respective keyboard shortcuts
-- Fix text highlighting bug
+- Allow changing page size
+- Introduce experimental ODT opening support (can be enabled in Settings -> VelocityIDs (then requires an app restart to take effect); currently supports only plain text)
+- Fix opening TXT files
 - UI fixes
-- Code cleanup
-- Update dependencies
+- Word count fixes
+- Dependency updates
