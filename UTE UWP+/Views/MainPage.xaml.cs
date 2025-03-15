@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using MicaForUWP.Media;
+﻿using MicaForUWP.Media;
 using Microsoft.Graphics.Canvas.Text;
 using System;
 using System.Collections.Generic;
@@ -117,6 +116,7 @@ namespace UTE_UWP_.Views
             Layout.Visibility = Visibility.Collapsed;
             View.Visibility = Visibility.Collapsed;
             Help.Visibility = Visibility.Collapsed;
+            ToolTipService.SetToolTip(editor, null);
 
             ShareSourceLoad();
             InitializeVIDs();
