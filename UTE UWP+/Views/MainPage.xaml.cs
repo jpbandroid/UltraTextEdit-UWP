@@ -1,7 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
 using MicaForUWP.Media;
 using Microsoft.Graphics.Canvas.Text;
-using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -2003,19 +2002,6 @@ namespace UTE_UWP_.Views
             sizeA4.IsEnabled = false;
             sizeA3.IsEnabled = false;
             sizeLetter.IsEnabled = false;
-        }
-
-        private PrintHelper _printHelper;
-        private DataTemplate customPrintTemplate;
-        private async void Print(object sender, RoutedEventArgs e)
-        {
-            editor.RequestedTheme = ElementTheme.Light;
-            string value = string.Empty;
-            _printHelper = new PrintHelper(InnerEditorGrid);
-            var printHelperOptions = new PrintHelperOptions(true);
-            printHelperOptions.Orientation = PrintOrientation.Default;
-            await _printHelper.ShowPrintUIAsync("Print Document", printHelperOptions, true);
-            editor.RequestedTheme = ElementTheme.Default;
-        }
+        }  
     }
 }
