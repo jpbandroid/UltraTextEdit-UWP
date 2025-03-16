@@ -1410,6 +1410,10 @@ TextChanged="RichEditBox_TextChanged" SelectionChanged="editor_SelectionChanged"
         Key="S"
         Invoked="OnKeyboardAcceleratorInvoked"
         Modifiers="Control" />
+                                        <KeyboardAccelerator
+Key="O"
+Invoked="OnKeyboardAcceleratorInvoked"
+Modifiers="Control" />
                                     </RichEditBox.KeyboardAccelerators>
                                     <RichEditBox.Style>
                                         <Style x:Name="EditorStyle" TargetType="RichEditBox">

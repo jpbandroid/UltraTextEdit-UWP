@@ -510,6 +510,11 @@ namespace UTE_UWP_.Views
 
         private async void OpenButton_Click(object sender, RoutedEventArgs e)
         {
+            OpenFile();
+        }
+
+        private async void OpenFile()
+        {
             // Open a text file.
             FileOpenPicker open = new FileOpenPicker()
             {
@@ -519,7 +524,8 @@ namespace UTE_UWP_.Views
 
             open.FileTypeFilter.Add(".rtf");
             open.FileTypeFilter.Add(".txt");
-            if ((string)LocalSettings.Values["OdtTextVID"] == "On") {
+            if ((string)LocalSettings.Values["OdtTextVID"] == "On")
+            {
                 open.FileTypeFilter.Add(".odt");
             }
 
@@ -1906,6 +1912,28 @@ namespace UTE_UWP_.Views
                     SaveFile(true);
                     args.Handled = true;
                     break;
+                case Windows.System.VirtualKey.O:
+                    OpenFile();
+                    break;
+                case Windows.System.VirtualKey.T:
+                    ITextSelection ST = editor.Document.Selection;
+                    if (!(ST == null))
+                    {
+                        FormatEffect CF = ST.CharacterFormat.Strikethrough;
+                        switch (CF)
+                        {
+                            case FormatEffect.Off:
+                                CF = FormatEffect.On;
+                                STB.IsChecked = true;
+                                break;
+                            default:
+                                CF = FormatEffect.Off;
+                                STB.IsChecked = false;
+                                break;
+                        }
+                        ST.CharacterFormat.Strikethrough = CF;
+                    }
+                    break;
             }
         }
 
@@ -1974,6 +2002,6 @@ namespace UTE_UWP_.Views
             sizeA4.IsEnabled = false;
             sizeA3.IsEnabled = false;
             sizeLetter.IsEnabled = false;
-        }
+        }  
     }
 }
